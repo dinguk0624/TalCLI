@@ -12,6 +12,7 @@ import { runClean } from "./commands/clean.js";
 import { runTodoAdd, runTodoClear, runTodoDone, runTodoList } from "./commands/todo.js";
 import { runStats } from "./commands/stats.js";
 import { runGitUndo, runGitWip } from "./commands/git.js";
+import { checkForUpdate, printUpdateNotice } from "./updateCheck.js";
 
 function version(): string {
   try {
@@ -20,6 +21,15 @@ function version(): string {
     return raw.version ?? "0.0.0";
   } catch {
     return "0.0.0";
+  }
+}
+
+async function updateNotice(): Promise<void> {
+  try {
+    const info = await checkForUpdate(version());
+    if (info) printUpdateNotice(info);
+  } catch {
+    // never let the update check break the CLI
   }
 }
 
@@ -143,7 +153,10 @@ git
     await runGitUndo(opts);
   });
 
-program.parseAsync(process.argv).catch((error: unknown) => {
-  console.error(error instanceof Error ? error.message : error);
-  process.exitCode = 1;
-});
+program
+  .parseAsync(process.argv)
+  .then(updateNotice)
+  .catch((error: unknown) => {
+    console.error(error instanceof Error ? error.message : error);
+    process.exitCode = 1;
+  });
