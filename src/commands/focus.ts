@@ -1,6 +1,7 @@
 import * as prompts from "@clack/prompts";
 import pc from "picocolors";
 import { loadConfig } from "../config.js";
+import { recordSession } from "../stats.js";
 import { displayName, formatClock, sleep } from "../utils.js";
 import { spinner } from "../banner.js";
 
@@ -21,7 +22,7 @@ async function countdown(totalSeconds: number, mode: "focus" | "break"): Promise
   s.stop();
 }
 
-export async function runFocus(opts: FocusOptions = {}): Promise<void> {
+export async function runFocus(_opts: FocusOptions = {}): Promise<void> {
   const config = loadConfig();
   const fallbackFocus = config.focusMinutes ?? 25;
   const fallbackBreak = config.breakMinutes ?? 5;
@@ -67,6 +68,7 @@ export async function runFocus(opts: FocusOptions = {}): Promise<void> {
   }
 
   console.log(pc.green(`\n  Focus sprint complete — ${total} minutes done!`));
+  recordSession(total);
 
   const takeBreak = await prompts.confirm({
     message: `Take a ${fallbackBreak}-minute break now?`,
