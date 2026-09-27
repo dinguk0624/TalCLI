@@ -40,7 +40,12 @@ program
   .description("Your all-in-one chill companion for the terminal.")
   .version(version(), "-v, --version", "Show the TalCLI version");
 
-program.action(async () => {
+program.argument("[args...]").action(async (args: string[]) => {
+  if (args.length > 0) {
+    console.error(`Unknown command "${args[0]}". Run tal --help to see every command.`);
+    process.exitCode = 1;
+    return;
+  }
   await runHome();
 });
 
