@@ -10,6 +10,8 @@ import { runBreathe } from "./commands/breathe.js";
 import { runChill } from "./commands/chill.js";
 import { runClean } from "./commands/clean.js";
 import { runTodoAdd, runTodoClear, runTodoDone, runTodoList } from "./commands/todo.js";
+import { runStats } from "./commands/stats.js";
+import { runGitUndo, runGitWip } from "./commands/git.js";
 
 function version(): string {
   try {
@@ -111,10 +113,35 @@ todo
   .action(async () => {
     await runTodoList();
   });
-
 todo.action(async () => {
   await runTodoList();
 });
+
+program
+  .command("stats")
+  .description("Show focus totals, streaks, and your last 7 days")
+  .action(async () => {
+    await runStats();
+  });
+
+const git = program.command("git").description("Friendly git shortcuts for everyday moves");
+
+git
+  .command("wip")
+  .argument("[note...]")
+  .description("Stage everything and commit a wip checkpoint")
+  .action(async (parts: string[]) => {
+    await runGitWip(parts);
+  });
+
+git
+  .command("undo")
+  .option("--hard", "Also discard the changes (destructive)")
+  .option("-y, --yes", "Skip the confirmation prompt")
+  .description("Undo the last commit — revert by default, --hard to discard")
+  .action(async (opts: { hard?: boolean; yes?: boolean }) => {
+    await runGitUndo(opts);
+  });
 
 program.parseAsync(process.argv).catch((error: unknown) => {
   console.error(error instanceof Error ? error.message : error);
