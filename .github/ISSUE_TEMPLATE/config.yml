@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Questions & ideas
+    url: https://github.com/dinguk0624/TalCLI/discussions
+    about: Ask anything or brainstorm features before filing an issue
+  - name: Security reports
+    url: https://github.com/dinguk0624/TalCLI/security/advisories/new
+    about: Please report vulnerabilities privately — do not open a public issue
