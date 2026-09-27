@@ -3,7 +3,7 @@
 [![CI](https://github.com/dinguk0624/TalCLI/actions/workflows/ci.yml/badge.svg)](https://github.com/dinguk0624/TalCLI/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![Node](https://img.shields.io/badge/node-%E2%89%A520-brightgreen)](https://github.com/dinguk0624/TalCLI)
-[![Tests](https://img.shields.io/badge/tests-62%20passing-brightgreen)](./tests)
+[![Tests](https://img.shields.io/badge/tests-71%20passing-brightgreen)](./tests)
 
 > ⏳ TalCLI is not yet on npm — install locally with `npm link` (see [Contributing](./CONTRIBUTING.md)). This notice will be replaced by an install command after the first release.
 
@@ -80,6 +80,16 @@ tal --help       # every command, at a glance
 ### First run
 
 Run `tal init` once to save your name and defaults (focus length, break length, breathing pattern) to `~/.talcli/config.json`. Every command then adapts to you — or just skip it, TalCLI works out of the box.
+
+## ❓ FAQ
+
+**Where is my data stored?** Everything lives in `~/.talcli/` (`config.json`, `todo.json`, `stats.json`). It is plain JSON, always yours, and nothing ever leaves your machine.
+
+**How do I stop the update check?** Set `TAL_NO_UPDATE_CHECK=1`. The check also stays silent in CI environments and runs at most once per 24 hours.
+
+**Does `tal git undo` lose my work?** By default no — it creates a revert commit, so history stays intact. Only `tal git undo --hard` discards changes, and it asks for confirmation first.
+
+**How do I uninstall?** `npm uninstall -g talcli` removes the command; `rm -rf ~/.talcli` removes all local data.
 
 ## 🗺️ Roadmap
 
