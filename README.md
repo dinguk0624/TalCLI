@@ -1,9 +1,11 @@
 # TalCLI
 
 [![CI](https://github.com/dinguk0624/TalCLI/actions/workflows/ci.yml/badge.svg)](https://github.com/dinguk0624/TalCLI/actions/workflows/ci.yml)
-[![npm version](https://img.shields.io/npm/v/talcli.svg)](https://www.npmjs.com/package/talcli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
-[![Node](https://img.shields.io/node/v/talcli.svg)](https://www.npmjs.com/package/talcli)
+[![Node](https://img.shields.io/badge/node-%E2%89%A520-brightgreen)](https://github.com/dinguk0624/TalCLI)
+[![Tests](https://img.shields.io/badge/tests-42%20passing-brightgreen)](./tests)
+
+> ⏳ TalCLI is not yet on npm — install locally with `npm link` (see [Contributing](./CONTRIBUTING.md)). This notice will be replaced by an install command after the first release.
 
 > Your all-in-one chill companion for the terminal. Focus sprints, guided breathing, motivation, and handy dev tools — one short command away.
 
@@ -34,6 +36,7 @@ Because staying focused shouldn't require five browser tabs. TalCLI lives where 
 - 💬 **`tal quote`** — a spark of motivation when you need it
 - 🧘 **`tal chill`** — the full reset: quote → focus → breathe
 - 🧹 **`tal clean`** — safely clear `node_modules`, `dist`, and friends
+- ✅ **`tal todo`** — a tiny local task list, no account required
 - 🏠 **`tal`** — an interactive home menu, always one keystroke away
 
 No accounts. No telemetry. No cloud. Everything runs locally and your settings live in `~/.talcli`.
@@ -41,10 +44,16 @@ No accounts. No telemetry. No cloud. Everything runs locally and your settings l
 ## 📦 Install
 
 ```bash
-npm install -g talcli
+npm install -g talcli   # coming with the first npm release
 ```
 
-Requires Node.js 18 or newer.
+Requires Node.js 20 or newer. Until the first release, build from source:
+
+```bash
+git clone https://github.com/dinguk0624/TalCLI.git
+cd TalCLI
+npm install && npm run build && npm link
+```
 
 ## 🚀 Usage
 
@@ -56,6 +65,10 @@ tal breathe      # take a breathing break
 tal quote        # get a motivational quote
 tal chill        # quote → focus → breathe
 tal clean        # find and remove disposable folders (has --dry-run)
+tal todo         # show your local task list
+tal todo add "Ship v0.2"  # add a todo
+tal todo done 1 2         # finish todos (--undo reopens)
+tal todo clear            # remove completed todos
 tal --help       # every command, at a glance
 ```
 
@@ -65,7 +78,7 @@ Run `tal init` once to save your name and defaults (focus length, break length, 
 
 ## 🗺️ Roadmap
 
-- [ ] `tal todo` — tiny local task list
+- [x] `tal todo` — tiny local task list
 - [ ] `tal git` — friendly git shortcuts (`wip`, `undo`)
 - [ ] More breathing patterns and ambient timers
 - [ ] Session statistics and streaks
