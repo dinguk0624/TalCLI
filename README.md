@@ -3,7 +3,7 @@
 [![CI](https://github.com/dinguk0624/TalCLI/actions/workflows/ci.yml/badge.svg)](https://github.com/dinguk0624/TalCLI/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![Node](https://img.shields.io/badge/node-%E2%89%A520-brightgreen)](https://github.com/dinguk0624/TalCLI)
-[![Tests](https://img.shields.io/badge/tests-42%20passing-brightgreen)](./tests)
+[![Tests](https://img.shields.io/badge/tests-62%20passing-brightgreen)](./tests)
 
 > ⏳ TalCLI is not yet on npm — install locally with `npm link` (see [Contributing](./CONTRIBUTING.md)). This notice will be replaced by an install command after the first release.
 
@@ -37,6 +37,8 @@ Because staying focused shouldn't require five browser tabs. TalCLI lives where 
 - 🧘 **`tal chill`** — the full reset: quote → focus → breathe
 - 🧹 **`tal clean`** — safely clear `node_modules`, `dist`, and friends
 - ✅ **`tal todo`** — a tiny local task list, no account required
+- 📊 **`tal stats`** — focus totals, day streaks, and a 7-day activity chart
+- 🌿 **`tal git`** — friendly shortcuts: `wip` checkpoints and safe `undo`
 - 🏠 **`tal`** — an interactive home menu, always one keystroke away
 
 No accounts. No telemetry. No cloud. Everything runs locally and your settings live in `~/.talcli`.
@@ -61,7 +63,7 @@ npm install && npm run build && npm link
 tal              # open the interactive home menu
 tal init         # set your name and session defaults
 tal focus        # start a focus sprint
-tal breathe      # take a breathing break
+tal breathe      # 6 presets or build your own rhythm
 tal quote        # get a motivational quote
 tal chill        # quote → focus → breathe
 tal clean        # find and remove disposable folders (has --dry-run)
@@ -69,6 +71,9 @@ tal todo         # show your local task list
 tal todo add "Ship v0.2"  # add a todo
 tal todo done 1 2         # finish todos (--undo reopens)
 tal todo clear            # remove completed todos
+tal stats        # focus totals, streaks, last 7 days
+tal git wip "note"        # stage all + wip checkpoint commit
+tal git undo              # revert the last commit (--hard to discard)
 tal --help       # every command, at a glance
 ```
 
@@ -79,9 +84,11 @@ Run `tal init` once to save your name and defaults (focus length, break length, 
 ## 🗺️ Roadmap
 
 - [x] `tal todo` — tiny local task list
-- [ ] `tal git` — friendly git shortcuts (`wip`, `undo`)
-- [ ] More breathing patterns and ambient timers
-- [ ] Session statistics and streaks
+- [x] `tal git` — friendly git shortcuts (`wip`, `undo`)
+- [x] More breathing patterns and ambient timers
+- [x] Session statistics and streaks
+- [ ] `tal setup` — scaffold new projects from templates
+- [ ] Ambient sounds and themes
 
 Have an idea? [Open a feature request](https://github.com/dinguk0624/TalCLI/issues)!
 

@@ -10,14 +10,15 @@ cd TalCLI
 npm install
 ```
 
-| Command             | What it does                    |
-| ------------------- | ------------------------------- |
-| `npm run build`     | Bundle the CLI into `dist/`     |
-| `npm run dev`       | Rebuild on every change         |
-| `npm test`          | Run the test suite              |
-| `npm run typecheck` | Strict TypeScript check         |
-| `npm run format`    | Format everything with Prettier |
-| `npm run lint`      | Check formatting in CI          |
+| Command               | What it does                    |
+| --------------------- | ------------------------------- |
+| `npm run build`       | Bundle the CLI into `dist/`     |
+| `npm run dev`         | Rebuild on every change         |
+| `npm test`            | Run the test suite              |
+| `npm run typecheck`   | Strict TypeScript check         |
+| `npm run lint`        | ESLint over the whole codebase  |
+| `npm run lint:format` | Prettier formatting check       |
+| `npm run format`      | Format everything with Prettier |
 
 ### Trying your changes locally
 
@@ -32,7 +33,7 @@ npm link
 ## 📝 Guidelines
 
 - **Language**: all code, comments, docs, and commit messages are in English.
-- **Style**: run `npm run format` before committing. CI enforces it.
+- **Style**: run `npm run format` before committing. CI enforces ESLint + Prettier.
 - **Tests**: add or update tests for any behavior change. `npm test` must pass.
 - **Type safety**: `npm run typecheck` must pass with zero errors.
 - **Commits**: short, imperative subject lines, e.g. `add --dry-run flag to tal clean`.
