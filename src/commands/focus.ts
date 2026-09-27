@@ -9,13 +9,23 @@ export interface FocusOptions {
   noBanner?: boolean;
 }
 
+function bar(fraction: number, width: number): string {
+  const clamped = Math.min(1, Math.max(0, fraction));
+  const filled = Math.round(clamped * width);
+  return `${"█".repeat(filled)}${pc.dim("░".repeat(width - filled))}`;
+}
+
 async function countdown(totalSeconds: number, mode: "focus" | "break"): Promise<void> {
   const tag = mode === "focus" ? pc.cyan("focus") : pc.magenta("break");
+  const width = 24;
   const s = spinner("");
   s.start();
   let remaining = totalSeconds;
   while (remaining > 0) {
-    s.text = `  ${tag} ${pc.dim("·")} ${pc.bold(formatClock(remaining))} remaining`;
+    const elapsed = totalSeconds - remaining;
+    s.text =
+      `  ${tag} ${pc.dim("·")} ${pc.bold(formatClock(remaining))} ` +
+      `${bar(elapsed / totalSeconds, width)}`;
     await sleep(1000);
     remaining -= 1;
   }
